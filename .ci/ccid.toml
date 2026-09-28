@@ -1,0 +1,24 @@
+# SPDX-License-Identifier: MIT OR Apache-2.0
+#
+# Selectors governing CI for nixcards deployment. GHA runs `nix flake check`;
+# the Crow manual lane runs the same `nix` selectors. No Rust steps live here:
+# this repository ships only Nix deployment code.
+
+schema = 1
+project = "nixcards"
+
+[checks.native]
+kind = "nix"
+mode = "native"
+
+[checks.eval]
+kind = "nix"
+mode = "eval"
+
+[checks.list]
+kind = "nix"
+mode = "list"
+
+[checks.all-systems]
+kind = "nix"
+mode = "all-systems"
