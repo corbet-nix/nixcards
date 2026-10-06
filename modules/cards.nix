@@ -6,7 +6,12 @@
 # Real code: https://github.com/pass-me/cards
 #   crates/nixcards-core, crates/nixcards-store, crates/nixcards-tui,
 #   web/, cards/ — all FSL-1.1-ALv2 / CC-BY-NC-SA-4.0, committed in-tree.
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   cfg = config.services.passme-cards;
   defaults = import ../lib/cards.nix;
@@ -82,9 +87,7 @@ in
         StateDirectory = builtins.baseNameOf cfg.dataDir;
         ExecStart =
           let
-            root =
-              if cfg.webRoot != null then cfg.webRoot
-              else "${cfg.package}/share/passme-cards/web";
+            root = if cfg.webRoot != null then cfg.webRoot else "${cfg.package}/share/passme-cards/web";
           in
           "${pkgs.python3}/bin/python3 -m http.server ${toString cfg.port} --directory ${root}";
         Restart = "on-failure";

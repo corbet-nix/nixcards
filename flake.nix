@@ -17,9 +17,13 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
   };
 
-  outputs = { self, nixpkgs }:
+  outputs =
+    { self, nixpkgs }:
     let
-      forAllSystems = nixpkgs.lib.genAttrs [ "x86_64-linux" "aarch64-linux" ];
+      forAllSystems = nixpkgs.lib.genAttrs [
+        "x86_64-linux"
+        "aarch64-linux"
+      ];
       pkgsFor = system: nixpkgs.legacyPackages.${system};
     in
     {
@@ -29,10 +33,16 @@
       lib.cards = import ./lib/cards.nix;
       lib.policy = ./modules/cards.nix;
 
-      checks = forAllSystems (system:
-        let pkgs = pkgsFor system;
-        in {
+      checks = forAllSystems (
+        system:
+        let
+          pkgs = pkgsFor system;
+        in
+        {
           cards-eval = import ./checks/cards-eval.nix { inherit pkgs; };
-        });
+        }
+      );
+
+      formatter = forAllSystems (system: (pkgsFor system).nixfmt-rfc-style);
     };
 }
