@@ -56,6 +56,6 @@ Outbound licence is `MIT OR Apache-2.0`. See `LICENSE-MIT` and
 Default instructions are in `CONTRIBUTING.md`. Every external contribution must be submitted through a pull request whose description contains this exact affirmation:
 
 > I have read and agree to version 1.0 of the Individual Contributor License Agreement at
-> https://github.com/corbet-nix/.github/blob/cla-v1.0/CLA.md.
+> https://git.corbet.ch/corbet-legal/cla/src/tag/cla-v1.0/CLA.md.
 
 The pull-request record is the acceptance record. A maintainer must not merge an external contribution without that affirmation.
