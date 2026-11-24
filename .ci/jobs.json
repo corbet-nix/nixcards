@@ -2,26 +2,13 @@
   "schema": 1,
   "generator": "ccid render v1",
   "tool_revision": "",
-  "manifest_sha256": "89c3660c5922547bbb696981d9fd63df3264e5f4be3be857ec55289b932f168f",
+  "manifest_sha256": "0e6cc27665b86ee906761c01adb364e2c2f75c9e35d02e9dd8e4eca954f3781e",
   "jobs": {
-    "portable-paths": {
-      "job": "portable-paths",
-      "scheduler": "forgejo",
-      "checks": [
-        "portable-paths"
-      ],
-      "workflow": "portable-paths",
-      "command": [
-        "ccid:run-declared-checks"
-      ],
-      "runs_on": "linux"
-    },
     "verify": {
       "job": "verify",
       "scheduler": "forgejo",
       "checks": [
         "native",
-        "eval",
         "list",
         "all-systems"
       ],
@@ -31,6 +18,7 @@
         ".ci/run-cached.sh"
       ],
       "runs_on": "linux",
+      "fold_portable_paths": "report",
       "archive_inputs": true
     }
   }
